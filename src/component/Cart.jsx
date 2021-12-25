@@ -59,12 +59,8 @@ function Cart() {
   const totalQty = qty.reduce(reducerOfQty, 0);
 
   // reduce method
-  // qty.reduce(function
-  //    (
-  //    total[the initial value or the reeviously returned value of function],
-  //    currentValue,currentIndex,array
-  //     ),
-  //    initial value)
+  // qty.reduce(function(total[the initial value or the previously returned value of function],currentValue,currentIndex,array),initial value)
+
   // getting the Total Product Price
   const price = cartProducts.map((cartProduct) => {
     return cartProduct.TotalProductPrice;
@@ -143,10 +139,13 @@ function Cart() {
   const handleToken = async (token) => {
     // console.log(token);
     const cart = { name: "All Product", totalPrice };
-    const response = await axios.post("http://localhost:8080/checkout", {
-      token,
-      cart,
-    });
+    const response = await axios.post(
+      "https://mistores/checkout.heroku.com/checkout",
+      {
+        token,
+        cart,
+      }
+    );
     console.log(response);
     let { status } = response.data;
     if (status === "success") {

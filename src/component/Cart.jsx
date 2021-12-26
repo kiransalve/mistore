@@ -140,13 +140,13 @@ function Cart() {
     // console.log(token);
     const cart = { name: "All Product", totalPrice };
     const response = await axios.post(
-      "https://mistores/checkout.heroku.com/checkout",
+      "https://mistores.herokuapp.com/checkout",
       {
         token,
         cart,
       }
     );
-    console.log(response);
+    // console.log(response);
     let { status } = response.data;
     if (status === "success") {
       history.push("/");
